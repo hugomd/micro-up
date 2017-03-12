@@ -8,8 +8,8 @@
     "url": "hu.md"
   },
   "scripts": {
-    "test": "xo",
     "start": "micro index.js",
+    "predev": "xo",
     "dev": "nodemon --exec 'micro index.js'"
   },
   "dependencies": {
@@ -32,7 +32,11 @@
     "up"
   ],
   "xo": {
-    "space": true
+    "space": true,
+    "rules": {
+      "curly": 0,
+      "no-negated-condition": 0
+    }
   },
   "bugs": {
     "url": "https://github.com/hugomd/micro-up/issues"
