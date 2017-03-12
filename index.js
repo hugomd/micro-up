@@ -3,8 +3,14 @@ const fetch = require('node-fetch');
 const assert = require('http-assert');
 
 module.exports = async (req, res) => {
-  const url = req.url.substr(1);
-  assert(url !== '', 400, 'URL must be defined.');
+  let url = req.url.substr(1);
+  if (url === 'favicon.ico') return;
+  if (url.indexOf('http://') !== -1) {
+    url = url.substr(7);
+  } else if (url.indexOf('https://') !== -1) {
+    url = url.substr(8);
+  }
+  assert(url !== '', 400, 'URL must be defined. Usage: https://up.now.sh/google.com');
   let statusCode;
   let message;
   try {
