@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
   } else if (url.indexOf('https://') !== -1) {
     url = url.substr(8);
   }
-  let json = req.url.indexOf("?json") !== -1;
+  let json = req.url.indexOf('?json') !== -1;
   assert(url !== '', 400, 'URL must be defined. Usage: https://up.now.sh/google.com');
   let statusCode;
   let message;
