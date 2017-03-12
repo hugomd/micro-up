@@ -41,5 +41,6 @@
   "bugs": {
     "url": "https://github.com/hugomd/micro-up/issues"
   },
-  "homepage": "https://github.com/hugomd/micro-up#readme"
+  "homepage": "https://github.com/hugomd/micro-up#readme",
+  "license": "MIT"
 }
