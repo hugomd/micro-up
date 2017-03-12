@@ -1,0 +1,41 @@
+{
+  "name": "micro-up",
+  "version": "1.0.0",
+  "description": "A microservice that checks whether a website is up.",
+  "author": {
+    "name": "Hugo Muller-Downing",
+    "email": "npmjs@hugo.sx",
+    "url": "hu.md"
+  },
+  "scripts": {
+    "test": "xo",
+    "start": "micro index.js",
+    "dev": "nodemon --exec 'micro index.js'"
+  },
+  "dependencies": {
+    "http-assert": "^1.2.0",
+    "micro": "^7.1.0",
+    "node-fetch": "^1.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "xo": "^0.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugomd/micro-up.git"
+  },
+  "keywords": [
+    "microservice",
+    "micro",
+    "ping",
+    "up"
+  ],
+  "xo": {
+    "space": true
+  },
+  "bugs": {
+    "url": "https://github.com/hugomd/micro-up/issues"
+  },
+  "homepage": "https://github.com/hugomd/micro-up#readme"
+}
