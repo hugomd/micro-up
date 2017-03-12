@@ -1,3 +1,6 @@
 {
-  "alias": "up.now.sh"
+  "alias": "up.now.sh",
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
