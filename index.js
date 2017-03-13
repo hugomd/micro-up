@@ -15,10 +15,10 @@ module.exports = async (req, res) => {
   let statusCode;
   let message;
   try {
-    const response = await fetch(`http://${url}`, {
+    await fetch(`http://${url}`, {
       timeout: 5000
     });
-    statusCode = response.status;
+    statusCode = 200;
     message = (json) ? ({url: url, status: 'Up'}) : (`${url} is up.`);
   } catch (err) {
     const {type, code} = err;
