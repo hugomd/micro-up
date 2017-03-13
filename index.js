@@ -14,12 +14,18 @@ module.exports = async (req, res) => {
   assert(url !== '', 400, 'URL must be defined. Usage: https://up.now.sh/google.com');
   let statusCode;
   let message;
+  res.setHeader('Content-Type', 'application/json');
   try {
     await fetch(`http://${url}`, {
       timeout: 5000
     });
     statusCode = 200;
-    message = (json) ? ({url: url, status: 'Up'}) : (`${url} is up.`);
+    if (json) {
+      message = {url: url, status: 'Up'};
+    } else {
+      res.setHeader('Content-Type', 'text/plain');
+      message = `${url} is up.`;
+    }
   } catch (err) {
     const {type, code} = err;
     if (type === 'system' && code === 'ENOTFOUND') {
