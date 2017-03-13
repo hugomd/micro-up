@@ -2,13 +2,21 @@ const {send} = require('micro');
 const fetch = require('node-fetch');
 const assert = require('http-assert');
 
+const protocols = {
+  HTTP: 'http://',
+  HTTPS: 'https://'
+};
+
 module.exports = async (req, res) => {
   let url = req.url.substr(1).split('?')[0];
+  let requestScheme;
   if (url === 'favicon.ico') return;
-  if (url.startsWith('http://')) {
+  if (url.startsWith(protocols.HTTP)) {
     url = url.substr(7);
-  } else if (url.startsWith('https://')) {
+    requestScheme = protocols.HTTP;
+  } else if (url.startsWith(protocols.HTTPS)) {
     url = url.substr(8);
+    requestScheme = protocols.HTTPS;
   }
   let json = req.url.endsWith('?json');
   assert(url !== '', 400, 'URL must be defined. Usage: https://up.now.sh/google.com');
@@ -16,7 +24,7 @@ module.exports = async (req, res) => {
   let message;
   res.setHeader('Content-Type', 'application/json');
   try {
-    await fetch(`http://${url}`, {
+    await fetch(`${requestScheme}${url}`, {
       timeout: 5000
     });
     statusCode = 200;
