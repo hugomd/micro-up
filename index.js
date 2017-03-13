@@ -5,9 +5,9 @@ const assert = require('http-assert');
 module.exports = async (req, res) => {
   let url = req.url.substr(1).split('?')[0];
   if (url === 'favicon.ico') return;
-  if (url.indexOf('http://') !== -1) {
+  if (url.startsWith('http://')) {
     url = url.substr(7);
-  } else if (url.indexOf('https://') !== -1) {
+  } else if (url.startsWith('https://')) {
     url = url.substr(8);
   }
   let json = req.url.indexOf('?json') !== -1;
