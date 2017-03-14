@@ -19,7 +19,8 @@ You can override the default (plaintext) by appending `?json` to the end of the 
 GET https://up.now.sh/google.com?json
 HTTP/1.1 200 OK
 
-{"url":"google.com","status":"Up"}```
+{"url":"google.com","status":"Up"}
+```
 
 # Contributing
 Clone the repo, `yarn install`, `yarn run dev`, change what you'd like, and make a pull request ✌️
