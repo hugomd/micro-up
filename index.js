@@ -9,7 +9,7 @@ const protocols = {
 
 module.exports = async (req, res) => {
   let url = req.url.substr(1).split('?')[0];
-  let requestScheme;
+  let requestScheme = protocols.HTTP;
   if (url === 'favicon.ico') return;
   if (url.startsWith(protocols.HTTP)) {
     url = url.substr(7);
