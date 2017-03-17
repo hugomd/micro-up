@@ -10,15 +10,18 @@
   "scripts": {
     "start": "micro index.js",
     "predev": "xo",
-    "dev": "nodemon --exec 'micro index.js'"
+    "dev": "nodemon --exec 'micro index.js'",
+    "test": "ava --verbose"
   },
   "dependencies": {
-    "http-assert": "^1.2.0",
     "micro": "^7.1.0",
     "node-fetch": "^1.6.3"
   },
   "devDependencies": {
+    "ava": "^0.18.2",
+    "nock": "^9.0.9",
     "nodemon": "^1.11.0",
+    "test-listen": "^1.0.1",
     "xo": "^0.17.1"
   },
   "repository": {
