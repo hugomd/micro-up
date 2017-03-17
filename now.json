@@ -1,5 +1,5 @@
 {
-  "alias": "up.now.sh",
+  "alias": ["up.now.sh", "up.ii.md"],
   "env": {
     "NODE_ENV": "production"
   }
