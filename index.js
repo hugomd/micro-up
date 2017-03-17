@@ -1,6 +1,6 @@
+const assert = require('assert');
 const {send} = require('micro');
 const fetch = require('node-fetch');
-const assert = require('http-assert');
 
 const protocols = {
   HTTP: 'http://',
@@ -19,7 +19,11 @@ module.exports = async (req, res) => {
     requestScheme = protocols.HTTPS;
   }
   let json = req.url.endsWith('?json');
-  assert(url !== '', 400, 'URL must be defined. Usage: https://up.now.sh/google.com');
+  try {
+    assert(url !== '');
+  } catch (err) {
+    return send(res, 400, 'URL must be defined. Usage: https://up.now.sh/google.com');
+  }
   let statusCode;
   let message;
   res.setHeader('Content-Type', 'application/json');
