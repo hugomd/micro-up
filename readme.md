@@ -1,4 +1,5 @@
-# Micro 🆙 [![Build status](https://img.shields.io/travis/hugomd/micro-up.svg?style=flat-square)](https://travis-ci.org/hugomd/micro-up)
+# Micro 🆙 [![Build status](https://img.shields.io/travis/hugomd/micro-up.svg?style=flat-square)](https://travis-ci.org/hugomd/micro-up) [![Build Status](https://drone.ii.md/api/badges/hugomd/micro-up/status.svg)](https://drone.ii.md/hugomd/micro-up)
+
 A microservice that checks whether a website is up or not.
 
 ## Usage
@@ -23,7 +24,7 @@ HTTP/1.1 200 OK
 ```
 
 # Contributing
-If you'd like to contribute (you can skip a few of these steps if you'd like 😉): 
+If you'd like to contribute (you can skip a few of these steps if you'd like 😉):
 1. Clone the repo
 2. Make a new local branch
 3. Change what you'd like
