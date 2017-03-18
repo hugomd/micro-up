@@ -1,48 +1,42 @@
-const assert = require('assert');
+const url = require('url');
 const {send} = require('micro');
 const fetch = require('node-fetch');
 
-const protocols = {
-  HTTP: 'http://',
-  HTTPS: 'https://'
+const errors = {
+  protocol: 'Invalid protocol. Must be: http:// or https://',
+  host: 'Host must be defined. Usage: https://up.now.sh/google.com'
 };
 
 module.exports = async (req, res) => {
-  let url = req.url.substr(1).split('?')[0];
-  let requestScheme = protocols.HTTP;
-  if (url === 'favicon.ico') return;
-  if (url.startsWith(protocols.HTTP)) {
-    url = url.substr(7);
-    requestScheme = protocols.HTTP;
-  } else if (url.startsWith(protocols.HTTPS)) {
-    url = url.substr(8);
-    requestScheme = protocols.HTTPS;
-  }
-  let json = req.url.endsWith('?json');
-  try {
-    assert(url !== '');
-  } catch (err) {
-    return send(res, 400, 'URL must be defined. Usage: https://up.now.sh/google.com');
-  }
+  const reqUrl = url.parse(req.url);
+  const json = reqUrl.query === 'json';
+
+  const host = url.parse(reqUrl.pathname.substr(1));
+  if (host.pathname === 'favicon.ico') return;
+  if (host.href === '') return send(res, 400, errors.host);
+
+  const protocol = host.protocol ? host.protocol : 'http:';
+  if (!['http:', 'https:'].includes(protocol)) return send(res, 400, errors.protocol);
+
+  const hostname = host.hostname ? host.hostname : url.parse(`${protocol}//${host.path}`).hostname;
+
+  res.setHeader('Content-Type', 'text/plain');
+  if (json) res.setHeader('Content-Type', 'application/json');
+
   let statusCode;
   let message;
-  res.setHeader('Content-Type', 'application/json');
+
   try {
-    await fetch(`${requestScheme}${url}`, {
+    await fetch(`${protocol}//${hostname}`, {
       timeout: 5000
     });
     statusCode = 200;
-    if (json) {
-      message = {url: url, status: 'Up'};
-    } else {
-      res.setHeader('Content-Type', 'text/plain');
-      message = `${url} is up.`;
-    }
+    message = json ? {url: hostname, status: 'Up'} : `${hostname} is up.`;
   } catch (err) {
     const {type, code} = err;
     if (type === 'system' && code === 'ENOTFOUND') {
       statusCode = 200;
-      message = (json) ? ({url: url, status: 'Down'}) : (`${url} is not up.`);
+      message = (json) ? ({url: hostname, status: 'Down'}) : (`${hostname} is not up.`);
     } else {
       statusCode = 400;
       message = (json) ? ({error: 'Something went wrong.'}) : (`Something went wrong.`);
