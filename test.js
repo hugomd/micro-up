@@ -102,3 +102,9 @@ test('should fail if invalid protocol', async t => {
   t.is(response.status, 400);
   t.is(body, 'Invalid protocol. Must be: http:// or https://');
 });
+
+test('should ignore /favicon.ico', async t => {
+  const url = await listen(service);
+  const response = await fetch(`${url}/favicon.ico`);
+  t.is(response.status, 204);
+});
