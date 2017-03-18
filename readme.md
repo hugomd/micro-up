@@ -1,4 +1,4 @@
-# Micro 🆙 [![Build status](https://badge.buildkite.com/9dd021b266dd0e5afa601ca282b1d5e53f5ad750b927a2abf0.svg)](https://buildkite.com/hugos-open-source/micro)
+# Micro 🆙 [![Build status](https://badge.buildkite.com/9dd021b266dd0e5afa601ca282b1d5e53f5ad750b927a2abf0.svg)](https://buildkite.com/open-source/micro)
 A microservice that checks whether a website is up or not.
 
 ## Usage
