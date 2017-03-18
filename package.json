@@ -11,7 +11,8 @@
     "start": "micro index.js",
     "predev": "xo",
     "dev": "nodemon --exec 'micro index.js'",
-    "test": "ava --verbose"
+    "test": "ava --verbose",
+    "posttest": "xo"
   },
   "dependencies": {
     "micro": "^7.1.0",
