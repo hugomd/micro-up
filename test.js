@@ -65,7 +65,7 @@ test('should succeed if destination is not 200 OK', async t => {
 
 test('should fail if destination is unreachable', async t => {
   const url = await listen(service);
-  const response = await fetch(`${url}/this.is.not.a.domain`);
+  const response = await fetch(`${url}/http://this.is.not.a.domain`);
   const body = await response.text();
   t.is(response.status, 200);
   t.is(body, 'this.is.not.a.domain is not up.');
