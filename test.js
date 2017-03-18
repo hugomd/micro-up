@@ -71,7 +71,7 @@ test('should fail if destination is unreachable', async t => {
   t.is(body, 'this.is.not.a.domain is not up.');
 });
 
-test('should return json', async t => {
+test('should return json when query string is undefined', async t => {
   nock('http://zeit5.co')
     .get('/')
     .reply(400);
@@ -81,6 +81,18 @@ test('should return json', async t => {
   const body = await response.json();
   t.is(response.status, 200);
   t.deepEqual(body, {status: 'Up', url: 'zeit5.co'});
+});
+
+test('should return json when query string is not undefined', async t => {
+  nock('http://zeit6.co')
+    .get('/')
+    .reply(400);
+
+  const url = await listen(service);
+  const response = await fetch(`${url}/http://zeit6.co?json=something`);
+  const body = await response.json();
+  t.is(response.status, 200);
+  t.deepEqual(body, {status: 'Up', url: 'zeit6.co'});
 });
 
 test('should fail if invalid protocol', async t => {

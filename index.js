@@ -1,4 +1,5 @@
-const url = require('url');
+const {parse} = require('url');
+const qs = require('querystring');
 const {send} = require('micro');
 const fetch = require('node-fetch');
 
@@ -8,17 +9,18 @@ const errors = {
 };
 
 module.exports = async (req, res) => {
-  const reqUrl = url.parse(req.url);
-  const json = reqUrl.query === 'json';
+  const url = parse(req.url);
+  const query = qs.parse(url.query);
+  const json = query.json !== undefined;
 
-  const host = url.parse(reqUrl.pathname.substr(1));
+  const host = parse(url.pathname.substr(1));
   if (host.pathname === 'favicon.ico') return;
   if (host.href === '') return send(res, 400, errors.host);
 
   const protocol = host.protocol ? host.protocol : 'http:';
   if (!['http:', 'https:'].includes(protocol)) return send(res, 400, errors.protocol);
 
-  const hostname = host.hostname ? host.hostname : url.parse(`${protocol}//${host.path}`).hostname;
+  const hostname = host.hostname ? host.hostname : parse(`${protocol}//${host.path}`).hostname;
 
   res.setHeader('Content-Type', 'text/plain');
   if (json) res.setHeader('Content-Type', 'application/json');
