@@ -82,3 +82,11 @@ test('should return json', async t => {
   t.is(response.status, 200);
   t.deepEqual(body, {status: 'Up', url: 'zeit5.co'});
 });
+
+test('should fail if invalid protocol', async t => {
+  const url = await listen(service);
+  const response = await fetch(`${url}/ftp://this.is.not.a.domain`);
+  const body = await response.text();
+  t.is(response.status, 400);
+  t.is(body, 'Invalid protocol. Must be: http:// or https://');
+});
