@@ -8,19 +8,29 @@ const errors = {
   host: 'Host must be defined. Usage: https://up.now.sh/google.com'
 };
 
-module.exports = async (req, res) => {
+const handleReq = (req, res) => {
+  let err = [];
+
   const url = parse(req.url);
   const query = qs.parse(url.query);
   const json = query.json !== undefined;
 
   const host = parse(url.pathname.substr(1));
-  if (host.pathname === 'favicon.ico') return;
-  if (host.href === '') return send(res, 400, errors.host);
+  if (host.href === '') err = [res, 400, errors.host];
 
   const protocol = host.protocol ? host.protocol : 'http:';
-  if (!['http:', 'https:'].includes(protocol)) return send(res, 400, errors.protocol);
+  if (!['http:', 'https:'].includes(protocol)) err = [res, 400, errors.protocol];
 
   const hostname = host.hostname ? host.hostname : parse(`${protocol}//${host.path}`).hostname;
+
+  return {json, protocol, hostname, err};
+};
+
+module.exports = async (req, res) => {
+  if (req.url === '/favicon.ico') return null;
+
+  const {json, protocol, hostname, err} = await handleReq(req, res);
+  if (err.length > 0) return send(...err);
 
   res.setHeader('Content-Type', 'text/plain');
   if (json) res.setHeader('Content-Type', 'application/json');
