@@ -1,0 +1,7 @@
+pipeline:
+  micro:
+    image: node
+    commands:
+      - npm install -g yarn
+      - yarn install
+      - yarn test
