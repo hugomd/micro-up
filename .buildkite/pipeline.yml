@@ -1,0 +1,6 @@
+steps:
+  - command: yarn
+    label: ":llama: Install dependencies"
+
+  - command: yarn test
+    label: "✅ Tests"
