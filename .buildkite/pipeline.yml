@@ -3,4 +3,4 @@ steps:
     label: ":llama: Install dependencies"
 
   - command: yarn test
-    label: "✅ Tests ✅"
+    label: "✅ Tests"
