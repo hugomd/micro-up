@@ -45,6 +45,12 @@
       "no-negated-condition": 0
     }
   },
+  "now": {
+      "alias": ["up.now.sh", "up.ii.md"],
+      "env": {
+        "NODE_ENV": "production"
+      }
+  },
   "bugs": {
     "url": "https://github.com/hugomd/micro-up/issues"
   },
