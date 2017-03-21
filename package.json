@@ -11,7 +11,7 @@
     "start": "micro index.js",
     "predev": "xo",
     "dev": "nodemon --exec 'micro index.js'",
-    "test": "ava",
+    "test": "nyc ava",
     "posttest": "xo"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "ava": "^0.18.2",
     "nock": "^9.0.9",
     "nodemon": "^1.11.0",
+    "nyc": "^10.1.2",
     "test-listen": "^1.0.1",
     "xo": "^0.17.1"
   },
@@ -35,6 +36,18 @@
     "ping",
     "up"
   ],
+  "nyc": {
+    "check-coverage": true,
+    "lines": 90,
+    "statements": 90,
+    "functions": 90,
+    "exclude": [
+      "test*.js"
+    ],
+    "include": [
+      "index.js"
+    ]
+  },
   "ava": {
     "verbose": true
   },
