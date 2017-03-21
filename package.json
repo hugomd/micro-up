@@ -11,7 +11,7 @@
     "start": "micro index.js",
     "predev": "xo",
     "dev": "nodemon --exec 'micro index.js'",
-    "test": "ava --verbose",
+    "test": "ava",
     "posttest": "xo"
   },
   "dependencies": {
@@ -35,6 +35,9 @@
     "ping",
     "up"
   ],
+  "ava": {
+    "verbose": true
+  },
   "xo": {
     "space": true,
     "rules": {
