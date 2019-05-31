@@ -4,7 +4,7 @@ const micro = require('micro');
 const fetch = require('node-fetch');
 const listen = require('test-listen');
 
-const api = require('./index');
+const api = require('.');
 
 const service = micro(api);
 

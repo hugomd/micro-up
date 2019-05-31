@@ -44,15 +44,16 @@ module.exports = async (req, res) => {
     });
     statusCode = 200;
     message = json ? {url: hostname, status: 'Up'} : `${hostname} is up.`;
-  } catch (err) {
-    const {type, code} = err;
+  } catch (error) {
+    const {type, code} = error;
     if (type === 'system' && code === 'ENOTFOUND') {
       statusCode = 200;
       message = (json) ? ({url: hostname, status: 'Down'}) : (`${hostname} is not up.`);
     } else {
       statusCode = 400;
-      message = (json) ? ({error: 'Something went wrong.'}) : (`Something went wrong.`);
+      message = (json) ? ({error: 'Something went wrong.'}) : ('Something went wrong.');
     }
   }
+
   send(res, statusCode, message);
 };

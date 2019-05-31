@@ -15,15 +15,15 @@
     "posttest": "xo"
   },
   "dependencies": {
-    "micro": "^7.1.0",
+    "micro": "^9.3.4",
     "node-fetch": "^1.6.3"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
+    "ava": "^1.4.1",
     "nock": "^9.0.9",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.19.1",
     "test-listen": "^1.0.1",
-    "xo": "^0.17.1"
+    "xo": "^0.23.0"
   },
   "repository": {
     "type": "git",
@@ -44,12 +44,6 @@
       "curly": 0,
       "no-negated-condition": 0
     }
-  },
-  "now": {
-      "alias": ["up.now.sh", "up.ii.md"],
-      "env": {
-        "NODE_ENV": "production"
-      }
   },
   "bugs": {
     "url": "https://github.com/hugomd/micro-up/issues"
