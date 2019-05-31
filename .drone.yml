@@ -1,6 +1,0 @@
-pipeline:
-  micro:
-    image: node
-    commands:
-      - yarn install
-      - yarn test
