@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "micro": "^9.3.4",
-    "node-fetch": "^1.6.3"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "ava": "^1.4.1",
